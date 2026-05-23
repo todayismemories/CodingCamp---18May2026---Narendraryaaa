@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!--
+    Terapkan tema SEBELUM body dirender agar tidak ada flash putih/gelap.
+    Script kecil ini berjalan sinkron di <head>, aman tanpa defer/async.
+  -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- THEME TOGGLE -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+    <span id="themeIcon">🌙</span>
+  </button>
+
+  <div class="dashboard">
+
+    <!-- HEADER -->
+    <header class="header-section">
+      <p class="greeting" id="greeting">Selamat Pagi</p>
+      <h1 class="clock" id="clock">00:00:00</h1>
+      <p class="date" id="date">Senin, 1 Januari 2025</p>
+
+      <!-- CUSTOM NAME INPUT -->
+      <div class="name-form">
+        <input
+          type="text"
+          id="nameInput"
+          class="name-input"
+          placeholder="Masukkan namamu..."
+          maxlength="30"
+          autocomplete="off"
+        />
+        <button id="nameSaveBtn" class="btn btn-primary btn-sm">Simpan</button>
+      </div>
+    </header>
+
+    <div class="grid-layout">
+
+      <!-- FOCUS TIMER -->
+      <section class="card timer-card">
+        <h2 class="card-title">⏱ Focus Timer</h2>
+        <div class="timer-display" id="timerDisplay">25:00</div>
+        <p class="timer-status" id="timerStatus"></p>
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="startBtn">▶ Start</button>
+          <button class="btn btn-secondary" id="stopBtn">⏸ Stop</button>
+          <button class="btn btn-ghost" id="resetBtn">↺ Reset</button>
+        </div>
+      </section>
+
+      <!-- TO-DO LIST -->
+      <section class="card todo-card">
+        <h2 class="card-title">✅ To-Do List</h2>
+        <form class="input-form" id="todoForm">
+          <input
+            type="text"
+            id="todoInput"
+            class="input-field"
+            placeholder="Tambah tugas baru..."
+            autocomplete="off"
+          />
+          <button type="submit" class="btn btn-primary">Tambah</button>
+        </form>
+        <ul class="todo-list" id="todoList"></ul>
+      </section>
+
+      <!-- QUICK LINKS -->
+      <section class="card links-card">
+        <h2 class="card-title">🔗 Quick Links</h2>
+        <form class="input-form" id="linkForm">
+          <input
+            type="text"
+            id="linkName"
+            class="input-field"
+            placeholder="Nama link..."
+            autocomplete="off"
+          />
+          <input
+            type="url"
+            id="linkUrl"
+            class="input-field"
+            placeholder="https://..."
+            autocomplete="off"
+          />
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+        <div class="links-container" id="linksContainer"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Satu file JS sesuai aturan folder -->
+  <script src="js/script.js"></script>
+</body>
+</html>
